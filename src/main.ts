@@ -17,5 +17,4 @@ class Game extends Engine {
   }
   
   export const game = new Game();
-  
   game.initialize();
