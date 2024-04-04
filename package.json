@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "excalibur": "0.29.1",
-    "typescript": "5.4.3",
+    "typescript": "5.4.4",
     "@excaliburjs/testing": "0.25.1"
   },
   "devDependencies": {
