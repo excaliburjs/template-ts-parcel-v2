@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "excalibur": "0.29.2",
+    "excalibur": "0.29.3",
     "typescript": "5.4.5",
     "@excaliburjs/testing": "0.25.1"
   },
