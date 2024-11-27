@@ -5,16 +5,18 @@
   "scripts": {
     "start": "parcel serve ./index.html",
     "build": "parcel build ./index.html --dist-dir ./dist --public-url ./",
-    "test": "npm run build && ex-test -d ./dist -t ./test/test.js"
+    "test": "npm run build && npx playwright test",
+    "test:integration-update": "npx playwright test --update-snapshots"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Erik Onarheim",
+  "license": "BSD-2-Clause",
   "dependencies": {
-    "excalibur": "0.29.3",
-    "typescript": "5.7.2",
-    "@excaliburjs/testing": "0.26.0"
+    "excalibur": "0.30.0-alpha.1267"
   },
   "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "@types/node": "^22.10.0",
+    "typescript": "5.7.2",
     "parcel": "2.13.2"
   }
 }

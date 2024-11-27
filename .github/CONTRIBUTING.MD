@@ -1,7 +1,9 @@
 # How to Contribute
 
-#### Code of Conduct
-All Excalibur.js projects are released with the [Contributor Code of Conduct](https://github.com/excaliburjs/Excalibur/blob/main/.github/CODE_OF_CONDUCT.md). By participating in this project, you agree to abide by its terms.
+## Code of Conduct
 
-#### Contributing Document
-The contributing document for Excalibur.js projects is located here: [Contributing Document](https://github.com/excaliburjs/Excalibur/blob/main/.github/CONTRIBUTING.md)
+All Excalibur.js projects are released with the [Contributor Code of Conduct](https://excaliburjs.com/code-of-conduct). By participating in this project, you agree to abide by its terms.
+
+## Contributing Document
+
+The contributing document for Excalibur.js projects is located here: [Contributing Document](https://excaliburjs.com/contributing)
