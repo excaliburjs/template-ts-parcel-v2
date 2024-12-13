@@ -11,7 +11,7 @@
   "author": "Erik Onarheim",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "excalibur": "0.30.0-alpha.1305"
+    "excalibur": "0.30.1"
   },
   "devDependencies": {
     "@playwright/test": "^1.49.0",
