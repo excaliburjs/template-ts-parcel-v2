@@ -17,6 +17,6 @@
     "@playwright/test": "^1.49.0",
     "@types/node": "^22.10.0",
     "typescript": "5.9.2",
-    "parcel": "2.15.4"
+    "parcel": "2.16.0"
   }
 }
