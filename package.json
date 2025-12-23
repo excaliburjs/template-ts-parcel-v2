@@ -11,12 +11,13 @@
   "author": "Erik Onarheim",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "excalibur": "0.31.0"
+    "excalibur": "~0.32.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.49.0",
     "@types/node": "^22.10.0",
     "typescript": "5.9.3",
-    "parcel": "2.16.3"
+    "parcel": "2.16.3",
+    "@parcel/config-default": "2.16.3"
   }
 }
