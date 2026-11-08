@@ -1,22 +1,23 @@
 import { defineConfig, devices } from '@playwright/test';
 
 /**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
-
-/**
  * See https://playwright.dev/docs/test-configuration.
  */
+
+// Port is env driven so several checkouts (or several templates) can run their suites
+// side by side without silently attaching to each other's dev server via
+// `reuseExistingServer`. CI leaves EX_E2E_PORT unset and keeps parcel's default 1234.
+const port = Number(process.env.EX_E2E_PORT ?? 1234);
+const baseURL = `http://localhost:${port}`;
+
 export default defineConfig({
   testDir: './tests',
   webServer: {
-    command: 'npm run start',
+    // Deliberately serves the real parcel build rather than a raw dev bundle - for a
+    // template the build pipeline itself is part of what is under test.
+    command: `npm run start -- --port ${port}`,
     timeout: 240 * 1000, // linux takes a long time
-    url: 'http://localhost:1234',
+    url: baseURL,
     reuseExistingServer: !process.env.CI,
     stdout: 'ignore',
     stderr: 'pipe',
@@ -34,7 +35,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    // baseURL: 'http://127.0.0.1:3000',
+    baseURL,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -44,7 +45,21 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: {
+        ...devices['Desktop Chrome'],
+        // Force software rendering and a 1x device scale so screenshots taken on a
+        // developer machine with a real GPU match the ones CI takes on a headless runner.
+        launchOptions: {
+          args: [
+            '--disable-background-timer-throttling',
+            '--disable-renderer-backgrounding',
+            '--disable-dev-shm-usage',
+            '--mute-audio',
+            '--force-device-scale-factor=1',
+            '--use-gl=swiftshader'
+          ]
+        }
+      },
     },
 
     // {
@@ -66,22 +81,5 @@ export default defineConfig({
     //   name: 'Mobile Safari',
     //   use: { ...devices['iPhone 12'] },
     // },
-
-    /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    // },
   ],
-
-  /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://127.0.0.1:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
 });
